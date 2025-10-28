@@ -78,7 +78,7 @@ class PTXCompiler(Compiler):
     self.arch = arch
     super().__init__(f"compile_{cache_key}_{self.arch}")
   def compile(self, src:str) -> bytes:
-    return src.replace("TARGET", self.arch).replace("VERSION", "8.7" if (ver:=int(self.arch[3:]))>=120 else ("7.8" if ver>=89 else "7.5")).encode()
+    return src.replace("TARGET", self.arch).replace("VERSION", "9.0" if (ver:=int(self.arch[3:]))>=100 else ("7.8" if ver>=89 else "7.5")).encode()
   def disassemble(self, lib:bytes): cuda_disassemble(lib, self.arch)
 
 class NVPTXCompiler(PTXCompiler):
